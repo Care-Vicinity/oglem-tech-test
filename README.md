@@ -20,3 +20,11 @@ php artisan migrate --seed
 ### How to submit:
 
 Create a PR or create a zip of the files and email: liams@trilogycare.com.au
+
+
+### Notes:
+
+- Feel free to leave a readme or description in your PR on your approach to the challenge, or any additional commentary that you think would assist us in understanding your process.
+- While we expect the task should only take 2 hours to complete, you are free to spend as much time as you'd like if there's some extra sauce you want to share with us. Opting to not take the extra time will *not* hamper your eligibility for the role.
+- Please specify how much time you chose to use with your submission
+- You might find it easiest to install Laravel Sail if you don't have a native PHP install on your dev machine.
