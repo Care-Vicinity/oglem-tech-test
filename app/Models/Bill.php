@@ -8,18 +8,26 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\Activitylog\Models\Activity;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Bill extends Model
-{
+class Bill extends Model {
     use HasFactory;
     use SoftDeletes;
 
     protected $fillable = [
-        'bill_reference', 'bill_date', 'submitted_at', 'approved_at', 'on_hold_at', 'bill_stage_id',
+        'bill_reference',
+        'bill_date',
+        'submitted_at',
+        'approved_at',
+        'on_hold_at',
+        'bill_stage_id',
     ];
 
-    public function users(): BelongsToMany
-    {
+    public function users(): BelongsToMany {
         return $this->belongsToMany(User::class);
+    }
+
+    public function stage(): HasOne {
+        return $this->hasOne(BillStage::class);
     }
 }
