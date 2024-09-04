@@ -9,8 +9,7 @@ use Illuminate\Support\Str;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
  */
-class BillFactory extends Factory
-{
+class BillFactory extends Factory {
     /**
      * The current password being used by the factory.
      */
@@ -21,15 +20,14 @@ class BillFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
-    {
+    public function definition(): array {
         return [
             'bill_reference' => fake()->name(),
             'bill_date' => fake()->date(),
             'submitted_at' => fake()->date(),
             'approved_at' => fake()->date(),
             'on_hold_at' => fake()->date(),
-            'bill_stage_id' => rand(0, 7),
+            'bill_stage_id' => rand(1, 7),  // BUG was producing in range 0-7 when the definition was 1-7
         ];
     }
 }
