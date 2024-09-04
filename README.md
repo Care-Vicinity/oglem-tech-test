@@ -19,7 +19,4 @@ php artisan migrate --seed
 
 ### How to submit:
 
-Create a PR or create a zip of the files and email: anthonyr@trilogycare.com.au
-
-https://github.com/Trilogy-Care/code-challenge-01
-
+Create a PR or create a zip of the files and email: liams@trilogycare.com.au
