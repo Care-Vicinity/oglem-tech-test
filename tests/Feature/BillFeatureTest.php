@@ -4,14 +4,18 @@ namespace Tests\Feature;
 
 use App\Models\Bill;
 use Carbon\Carbon;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 
-class BillFeatureTest extends TestCase {
+class BillFeatureTest extends TestCase
+{
 
     use WithoutMiddleware;
+    use DatabaseTransactions;
 
-    public function test_inertia_response(): void {
+    public function test_inertia_response(): void
+    {
         $response = $this->get("/");
 
         $this->assertStringContainsString("data-page", $response->getContent(), "Data response present");
@@ -19,7 +23,8 @@ class BillFeatureTest extends TestCase {
         $response->assertInertia();
     }
 
-    public function test_post_bill(): void {
+    public function test_post_bill(): void
+    {
         $response = $this->postJson("/", [
             "id" => null,
             "bill_reference" => "test",
@@ -30,7 +35,8 @@ class BillFeatureTest extends TestCase {
         $response->assertStatus(302);
     }
 
-    public function test_assigning_bills_to_users() {
+    public function test_assigning_bills_to_users()
+    {
         $this->artisan("app:assign-bills-to-users")->assertOk()->expectsOutputToContain("No Bills to Assign");
 
         for ($i = 0; $i < 100; $i++) {

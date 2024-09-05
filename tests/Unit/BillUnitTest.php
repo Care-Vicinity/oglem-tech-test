@@ -5,14 +5,15 @@ namespace Tests\Unit;
 use App\Models\Bill;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
-class BillUnitTest extends TestCase {
+class BillUnitTest extends TestCase
+{
+    use DatabaseTransactions;
 
-    use RefreshDatabase;
-
-    public function test_save_bill(): void {
+    public function test_save_bill(): void
+    {
         $startCount = Bill::all()->count();
         $bill = new Bill();
         $bill->fill([
@@ -27,7 +28,8 @@ class BillUnitTest extends TestCase {
         $this->assertNotNull($bill->id, "bill given id");
     }
 
-    public function test_save_bill_users() {
+    public function test_save_bill_users()
+    {
 
         $bills = Bill::all();
         $this->assertGreaterThan(0, $bills->count(), "bills should exist");
@@ -44,12 +46,13 @@ class BillUnitTest extends TestCase {
         $this->assertGreaterThan($startCount, $endCount, "User should be added");
     }
 
-    public function test_bill_stage() {
+    public function test_bill_stage()
+    {
         $bills = Bill::all();
         $this->assertGreaterThan(0, $bills->count(), "bills should exist");
 
         $bill = $bills[0];
-        $stage = $bill->stage();
+        $stage = $bill->billStage();
 
         $this->assertNotNull($stage, "Stage should exist");
     }
